@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+  <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a  class="nav-item nav-link" routerLink="/login" *ngIf="!authService.userValue" >Connexion</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-item nav-link" routerLink="/" *ngIf="authService.userValue">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-item nav-link" routerLink="/profil" *ngIf="authService.userValue">Profil</a>
+      </li>
+<!--      <li>-->
+<!--        <a class="nav-item nav-link" routerLink="/home-etudiant" *ngIf="authService.userValue && authService.userValue.role === role.Admin">Home Étudiant</a>-->
+<!--      </li>-->
+<!--      <li>-->
+<!--        <a class="nav-item nav-link" routerLink="/home-professeur" *ngIf="authService.userValue && authService.userValue.role === role.Admin">Home Professeur</a>-->
+<!--      </li>-->
+    </ul>
+  </div>
+
+  <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-item nav-link" (click)="logout()" *ngIf="authService.userValue" >Déconnexion</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+

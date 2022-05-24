@@ -1,0 +1,54 @@
+<div class="outer-div">
+  <div class="login-form inner-div">
+
+    <form
+      name="form"
+      (ngSubmit)="f.form.valid && onSubmit()"
+      #f="ngForm"
+      novalidate
+    >
+      <h2 class="text-center">Login</h2>
+
+      <div class="form-group">
+          <div *ngIf="errorMessage && f.submitted"  class="alert alert-danger mt-3 mb-0">Email ou mot de passe incorrect!</div>
+      </div>
+
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Email" name="email"
+               [(ngModel)]="form.email"
+               required
+               #email="ngModel">
+        <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="email.errors && f.submitted">
+          Veuillez renseigner l'Email
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <input type="password" class="form-control" placeholder="Mot de passe" name="password"
+          [(ngModel)]="form.password"
+          required
+          minlength="8"
+          #password="ngModel">
+
+        <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="password.errors && f.submitted"
+        >
+          <div *ngIf="password.errors['required']">Veuillez renseigner un mot de passe</div>
+          <div *ngIf="password.errors['minlength']">Le mot de passe doit faire au moins 8 caractères</div>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block shadow-none">Se connecter</button>
+      </div>
+    </form>
+  </div>
+</div>
+

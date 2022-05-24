@@ -1,0 +1,60 @@
+
+<div class="outer-div">
+  <div class="login-form inner-div" style="margin: auto;  width: 400px;  margin-top: 5%;">
+    <form (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm">
+
+      <div class="form-group" style="text-align: center">
+        <h4>Qr Code</h4>
+        <div>
+        <qr-code [value]="values" [size]="width" [level]="level"></qr-code></div>
+      </div>
+
+      <div class="form-row" style="text-align: center">
+        <div class="form-group col"><button class="btn btn-secondary" (click)="level='L'">L</button></div>
+        <div class="form-group col"><button class="btn btn-secondary" (click)="level='M'">M</button></div>
+        <div class="form-group col"><button class="btn btn-secondary" (click)="level='Q'">Q</button></div>
+        <div class="form-group col"><button class="btn btn-secondary" (click)="level='H'">H</button></div>
+      </div>
+
+      <div class="form-group" *ngIf="showData" style="text-align: center" >
+        <label>idEmargement :</label>
+        <p> {{idEmargement}}</p>
+        <label>Token :</label>
+        <p> {{token}}</p>
+      </div>
+      <div class="form-group" style="text-align: center">
+        <button class="btn btn-info" style="margin: auto;  width: 60%;" (click)="switchShowData()">Afficher les données</button>
+      </div>
+
+
+
+<!--      <div class="form-group" style="padding-bottom: 15px" >-->
+<!--        <label>Level</label>-->
+<!--        <select class="form-control" name="role" [(ngModel)]="level" >-->
+<!--          <option [ngValue]="'L'" >L</option>-->
+<!--          <option [ngValue]="'M'" >M</option>-->
+<!--          <option [ngValue]="'Q'" >Q</option>-->
+<!--          <option [ngValue]="'H'" >H</option>-->
+<!--        </select>-->
+<!--        <div class="form-control-col"></div>-->
+<!--      </div>-->
+
+<!--      <div class="form-group" style="padding-bottom: 15px" >-->
+<!--        <label>Taille</label>-->
+<!--        <select class="form-control" name="role" [(ngModel)]="width" >-->
+<!--          <option [ngValue]="250" >250px</option>-->
+<!--          <option [ngValue]="350" >350px</option>-->
+<!--          <option [ngValue]="450" >450px</option>-->
+<!--          <option [ngValue]="550" >550px</option>-->
+<!--        </select>-->
+<!--      </div>-->
+
+      <div class="form-group" style="margin: auto;  width: 40%;">
+        <button type="button" class="btn btn-primary btn-block shadow-none" style="margin-right: 5px;">Imprimer</button>
+        <button type="button" class="btn btn-secondary btn-block shadow-none" [routerLink]="['/emargement',id,'update']" >Retour</button> <!-- type="submit" -->
+      </div>
+    </form>
+
+  </div>
+</div>
+

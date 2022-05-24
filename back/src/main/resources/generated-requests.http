@@ -1,0 +1,19 @@
+###
+POST http://localhost:8080/api/auth/initRole
+
+
+###
+POST http://localhost:8080/api/auth/signup
+Content-Type: application/json
+
+{
+  "id": "123456",
+  "roles": ["admin","teacher"],
+  "email": "test2@gmail.com",
+  "password": "654321",
+  "firstName": "leo2",
+  "lastName": "alvarez",
+  "numEtu": "2196714"
+}
+
+

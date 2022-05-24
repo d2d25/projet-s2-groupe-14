@@ -1,0 +1,47 @@
+<div class="container-fluid" >
+
+  <table class="table table-light" style="margin: auto; width:  90%; min-width: 850px;  margin-top: 20px;" >
+    <thead class="thead-light">
+    <tr>
+      <th>Enseignant</th>
+      <th>Sujet</th>
+      <th>Début cours</th>
+      <th>Fin cours</th>
+      <th>Validation</th>
+      <th><button class="btn btn-success" style="margin-right: 5px;" [routerLink]="['/emargement/']">+ Ajouter</button> </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let s of emargements">
+      <td>{{s.teacher.firstName}} {{s.teacher.lastName}} </td>
+      <td>{{s.subject}}</td>
+      <td>{{s.beginsAt}}</td>
+      <td>{{s.endAt}}</td>
+      <td>
+        <div *ngIf="!s.isValidate">
+        <p>pas encore validé</p>
+        <button type="button" class="btn btn-primary" style="margin-right: 5px;"
+                [routerLink]="['/emargement',s.id,'qrCode']">QrCode</button> <!-- /emargement',s.id,'qrCode -->
+        </div>
+        <div *ngIf="s.isValidate">
+          <p>validé</p>
+          <button type="button" class="btn btn-secondary" style="margin-right: 5px;">Imprimer</button>
+        </div>
+      </td>
+      <td>
+        <button type="button" class="btn btn-warning" style="margin-right: 5px;"  [routerLink]="['/emargement',s.id,'update']">Edit</button>
+        <button class="btn btn-danger" (click)="deleteEmargement(s.id)">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!--<tr *ngFor="let s of groups ">-->
+<!--  <td [routerLink]="['/group',s.id,'update']">{{s.name}}</td>-->
+<!--  <td>-->
+<!--    <button type="button" class="btn btn-warning" style="margin-right: 5px;"-->
+<!--            [routerLink]="['/group',s.id,'update']">Edit</button>-->
+<!--  </td>-->
+<!--</tr>-->

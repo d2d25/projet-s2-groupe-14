@@ -1,0 +1,87 @@
+<div class="outer-div">
+  <div class="login-form inner-div">
+    <form
+      *ngIf="!isSuccessful"
+      name="form"
+      (ngSubmit)="f.form.valid && onSubmit()"
+      #f="ngForm"
+    >
+
+      <h2 class="text-center">Créer un émargement</h2>
+
+      <div class="form-group">
+        <label>Sujet</label>
+        <input
+          type="text" class="form-control" name="subject" placeholder=""
+          required
+          [(ngModel)]="form.subject"
+          #subject="ngModel"/>
+
+        <div class="alert-danger" *ngIf="subject.errors && f.submitted">
+          <div *ngIf="subject.errors['required']">Le sujet du cours est obligatoire</div>
+        </div>
+      </div>
+
+      <div class="form-group" *ngIf="isAdmin">
+        <label>Professeur</label>
+        <select class="form-control" name="teacher"
+                [(ngModel)]="idSelectedTeacher"
+                required
+                #teacher="ngModel"
+        >
+          <option disabled selected hidden></option>
+          <option *ngFor="let p of teachers" [value]="p.id">
+            {{p.firstName}} {{p.lastName}}
+          </option>
+        </select>
+
+        <div class="alert-danger" *ngIf="teacher.errors && f.submitted">
+          <div *ngIf="teacher.errors['required']">Veuillez choisir un professeur</div>
+        </div>
+
+      </div>
+
+      <div class="form-group" style="padding-bottom: 15px">
+        <label>Promotion</label>
+        <select class="form-control" name="promotion"
+                [(ngModel)]="idSelectedGroup"
+                required
+                #promotion="ngModel"
+                (change)="idSelectedSubGroup = null"
+        >
+          <option disabled selected hidden></option>
+          <option *ngFor="let g of groups" [value]="g.id" >
+            {{g.name}}
+          </option>
+        </select>
+
+        <div class="alert-danger" *ngIf="promotion.errors && f.submitted">
+          <div *ngIf="promotion.errors['required']">Veuillez choisir une promotion</div>
+        </div>
+
+      </div>
+
+      <div class="form-group" *ngIf="idSelectedGroup">
+        <label>Sous Groupe (optionnel)</label>
+        <select class="form-control" name="subGroupe"
+                [(ngModel)]="idSelectedSubGroup"
+        >
+          <option [selected]="true" [value]="null">Aucun</option>
+          <option *ngFor="let sg of getSubGroupByGroupId(idSelectedGroup)" [value]="sg.id">
+            {{sg.name}}
+          </option>
+        </select>
+      </div>
+
+
+      <div class="form-group" style="margin: auto; width: 60%">
+        <button type="submit" class="btn btn-primary btn-block shadow-none">Créer</button>
+        <button class="btn btn-secondary btn-block shadow-none" [routerLink]="'/emargement-list'">annuler</button>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+
+

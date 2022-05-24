@@ -1,0 +1,3 @@
+<app-home-etudiant *ngIf="currentUser.role=='ROLE_STUDENT'"></app-home-etudiant>
+<app-home-professeur *ngIf="currentUser.role=='ROLE_TEACHER'"></app-home-professeur>
+<app-board-admin *ngIf="currentUser.role=='ROLE_ADMIN'"></app-board-admin>

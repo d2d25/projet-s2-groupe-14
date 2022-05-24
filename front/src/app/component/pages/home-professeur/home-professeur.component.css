@@ -1,0 +1,19 @@
+
+h4 {
+  margin: auto;
+  padding-top: 5%;
+}
+
+.float-container {
+}
+
+.float-child {
+  width: 40%;
+  float: left;
+  padding: 20px;
+  margin: 5%;
+}
+
+.div2 {
+  min-width: 470px
+}

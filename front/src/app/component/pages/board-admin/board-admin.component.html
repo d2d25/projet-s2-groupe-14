@@ -1,0 +1,40 @@
+<div class="container-fluid" style="margin: auto; width: 400px;  margin-top: 5%; text-align: center">
+
+  <div class="card" style=" min-width: 470px">
+    <div class="card-body text-center">
+      <h2>Terminal Administrateur</h2>
+      <br>
+      <h5 class="card-title">Options : </h5>
+      <p class="card-text">Liste des différentes fonctionnalités qu'offre l'application... </p>
+      <table style="margin: auto; width:  50%;  text-align: center">
+        <tr >
+          <td >
+            <button class=" btn btn-info " [routerLink]="['/user-list']">Liste utilisateurs</button>
+          </td>
+          <td >
+            <button class=" btn btn-success" [routerLink]="['/register']">+ Ajouter User</button>
+          </td>
+        </tr>
+        <tr >
+          <td >
+            <button class=" btn btn-info" [routerLink]="['/group-list']">Liste groupes</button>
+          </td>
+          <td >
+            <button class=" btn btn-success" [routerLink]="['/group']">+ Ajouter groupe</button>
+          </td>
+        </tr>
+        <tr >
+          <td >
+            <button class=" btn btn-info" [routerLink]="['/emargement-list']">Liste  emargements</button>
+          </td>
+          <td >
+            <button class=" btn btn-success" [routerLink]="['/emargement']">+ Ajouter Emargement</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+
+
+</div>

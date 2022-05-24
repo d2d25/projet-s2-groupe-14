@@ -1,0 +1,33 @@
+<div class="container-fluid" >
+
+  <table class="table table-light" style="margin: auto; width:  90%; min-width: 950px;  margin-top: 20px;">
+    <thead class="thead-light">
+    <tr>
+      <th>ID</th>
+      <th>Mail</th>
+      <th>Prénom</th>
+      <th>Nom</th>
+      <th>N°Universitaire</th>
+      <th>Roles</th>
+      <th><button class="btn btn-success" style="margin-right: 5px;" [routerLink]="['/register/']">Add +</button> </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let s of users ">
+      <td>{{s.id}}</td>
+      <td>{{s.email}}</td>
+      <td>{{s.firstName}}</td>
+      <td>{{s.lastName}}</td>
+      <td>{{s.numEtu}}</td>
+      <td>{{s.role}}</td>
+      <td>
+        <button type="button" class="btn btn-warning" style="margin-right: 5px;"
+                [routerLink]="['/user',s.id,'update']">Edit</button>
+        <button class="btn btn-danger" (click)="deleteUser(s.id)">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+

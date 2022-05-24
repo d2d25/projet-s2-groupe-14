@@ -1,0 +1,45 @@
+<div class="m-4" style="  padding-top: 5%;">
+  <div class="card div1">
+    <img src="https://images.frandroid.com/wp-content/uploads/2020/05/tuto-qrcode-frandroid-v2.jpg" class="card-img-top" alt="Sample Image">
+    <div class="card-body text-center">
+      <h5 class="card-title">Scanner vos émargements</h5>
+      <p class="card-text">Comment procéder ? C'est simple ! Il vous suffit de scanner le QR Code généré par votre enseignant</p>
+
+      <div class="kt-portlet__body">
+        <zxing-scanner *ngIf="scannerEnabled" #scanner (scanSuccess)="scanSuccessHandler($event)">
+        </zxing-scanner>
+        <button class="btn btn-primary" (click)="enableScanner()" *ngIf="!scannerEnabled" type="button" >Scanner</button>
+      </div>
+
+      <br>
+
+      <div class="outer-div">
+        <div class="login-form inner-div">
+          <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+            <div *ngIf="showData">
+              <label>Token</label>
+              <div class="form-group">
+                <input type="text" name="token" [(ngModel)]="token" required >
+              </div>
+              <label>idEmargement</label>
+              <div class="form-group">
+                <input type="text" name="idEmargement" [(ngModel)]="idEmargement" required >
+              </div>
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block shadow-none">Envoyer token</button>
+                <!--              <button class="btn btn-warning btn-block shadow-none" [routerLink]="'/home'" >annuler</button>-->
+              </div>
+            </div>
+            <div class="form-group" style="text-align: center">
+              <button class="btn btn-secondary" (click)="switchShowData()">Rentrer les données manuellement</button>
+            </div>
+          </form>
+          <div class="alert-success" *ngIf="isSuccessful">
+            <div>Vous avez bien bien emergé !</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

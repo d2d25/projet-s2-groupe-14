@@ -1,0 +1,103 @@
+<div class="outer-div">
+  <div class="login-form inner-div">
+    <form
+      *ngIf="!isSuccessful"
+      name="form"
+      (ngSubmit)="f.form.valid && onSubmit()"
+      #f="ngForm"
+      novalidate
+    >
+
+
+      <h2 class="text-center" *ngIf="isRegistration">Inscrire un nouvel utilisateur</h2>
+      <h2 class="text-center" *ngIf="!isRegistration">Modification utilisateur</h2>
+
+      <div class="form-group">
+        <label>Prénom</label>
+        <input type="text" class="form-control" name="firstName" placeholder=""
+               [(ngModel)]="form.firstName"
+               required
+               #firstName="ngModel"
+        >
+        <div class="alert-danger" *ngIf="firstName.errors && f.submitted">
+          <div *ngIf="firstName.errors['required']">Le prénom est obligatoire</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Nom</label>
+        <input
+          type="text" class="form-control" name="lastName" placeholder=""
+          [(ngModel)]="form.lastName"
+          required
+          #lastName="ngModel"
+        />
+        <div class="alert-danger" *ngIf="lastName.errors && f.submitted">
+          <div *ngIf="lastName.errors['required']">Le nom est obligatoire</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input
+          type="email" class="form-control" name="email" placeholder=""
+          [(ngModel)]="form.email"
+          required email
+          #email="ngModel"
+        />
+        <div class="alert-danger" *ngIf="email.errors && f.submitted">
+          <div *ngIf="email.errors['required']">Veuillez renseigner votre Email</div>
+          <div *ngIf="email.errors['email']">L'adresse Email doit être valide</div>
+        </div>
+      </div>
+
+
+      <div class="form-group" *ngIf="isRegistration">
+        <label>Mot de passe</label>
+        <input
+          type="password" class="form-control" name="password" placeholder=""
+          [(ngModel)]="form.password"
+          required
+          minlength="8"
+          #password="ngModel"
+        />
+        <div class="alert-danger" *ngIf="password.errors && f.submitted">
+          <div *ngIf="password.errors['required']">Veuillez renseigner un mot de passe</div>
+          <div *ngIf="password.errors['minlength']">Le mot de passe doit faire au moins 8 caractères</div>
+        </div>
+      </div>
+
+
+      <div class="form-group" style="padding-bottom: 15px" >
+        <label>Role</label>
+        <select class="form-control" name="role" [(ngModel)]="selectedRole" >
+          <option [ngValue]="null" disabled selected hidden>...</option>
+          <option *ngFor="let r of roles" [value]="r.value" >
+            {{r.name}}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group" *ngIf="selectedRole=='ROLE_STUDENT'" >
+        <label>N°Universitaire</label>
+        <input
+          type="text" class="form-control" name="numEtu" placeholder=""
+          [(ngModel)]="form.numEtu"
+          required
+          #numEtu="ngModel"
+        />
+        <div class="alert-danger" *ngIf="numEtu.errors && f.submitted">
+          <div *ngIf="numEtu.errors['required']">Le numéro Etudiant est obligatoire</div>
+        </div>
+      </div>
+
+
+      <div class="form-group" style="margin: auto;  width: 60%;">
+        <button type="submit" class="btn btn-primary btn-block shadow-none">Enregistrer</button>
+        <button class="btn btn-secondary btn-block shadow-none" [routerLink]="'/user-list'">annuler</button>
+      </div>
+
+    </form>
+  </div>
+</div>
+
